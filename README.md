@@ -9,3 +9,5 @@ Created saves.go - Will make this get the title of the given URL from the title 
 
 Upgraded to go-1.5 because the package "net".
 
+Using this to help with the html parsing: https://jdanger.com/build-a-web-crawler-in-go.html
+
