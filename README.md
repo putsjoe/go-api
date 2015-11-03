@@ -11,3 +11,5 @@ Upgraded to go-1.5 because the package "net".
 
 Using this to help with the html parsing: https://jdanger.com/build-a-web-crawler-in-go.html
 
+HTML Parsing isnt working. Maybe Im not using the right language for this at the moment. Possibly use a different langauge.
+
