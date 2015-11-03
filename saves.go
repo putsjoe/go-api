@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
-	"net/http"
+	"golang.org/x/net/html"
 	"io/ioutil"
+	"net/http"
+	"reflect"
 )
 
 func Handlr(w http.ResponseWriter, r *http.Request) {
@@ -13,11 +15,29 @@ func Handlr(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Given Error is: ", err)
 
 	body, err := ioutil.ReadAll(resp.Body)
-	fmt.Println(w, "Body Read error is: ", err)
+	fmt.Println("Body Read error is: ", err)
+	fmt.Println("Body type - ", reflect.TypeOf(body))
 
-	fmt.Fprintf(w, "\n", string(body))
-//	resp.Body.Close();
+	//Parse html
+	prs, err := html.Parse(resp.Body)
+	fmt.Println("Body type after Parse - ", reflect.TypeOf(prs))
 
+	var f func(*html.Node)
+	f = func(n *html.Node) {
+		if n.Type == html.ElementNode && n.Data == "a" {
+			fmt.Println(n.Data)
+		}
+		fmt.Println(n.Data)
+	}
+	f(prs)
+	fmt.Println(prs.Data)
+
+	//	for ab := range prs {
+	//		fmt.Println(ab[
+	//	}
+
+	//fmt.Fprintf(w, "\n", string(body))
+	//	resp.Body.Close();
 
 }
 
